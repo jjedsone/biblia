@@ -1,0 +1,514 @@
+.biblia-header .page-subtitle {
+  margin-bottom: 0;
+}
+
+/* Container geral: evita quebra e overflow da página */
+.biblia-layout {
+  display: grid;
+  grid-template-columns: minmax(12rem, 14rem) minmax(0, 1fr) minmax(14rem, 18rem);
+  gap: 1.5rem;
+  align-items: start;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.biblia-nav {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+  padding: 1rem 1.1rem;
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-width: 0;
+  transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+}
+
+.biblia-nav:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-soft);
+}
+
+.biblia-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-bottom: 0.35rem;
+}
+
+.biblia-select {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 0.65rem;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease), background var(--duration) var(--ease);
+}
+
+.biblia-select:hover {
+  border-color: var(--accent);
+  background: var(--bg-paper);
+}
+
+.biblia-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.biblia-select optgroup {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.biblia-ref {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+  word-break: break-word;
+}
+
+/* Consulta de versículo */
+.biblia-consulta {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.biblia-input {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 0.65rem;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  box-sizing: border-box;
+}
+
+.biblia-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.biblia-input::placeholder {
+  color: var(--ink-muted);
+}
+
+.biblia-btn {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-inverse, #fff);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease), opacity var(--duration-fast) var(--ease);
+  box-sizing: border-box;
+}
+
+.biblia-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.biblia-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.biblia-btn-consulta {
+  width: 100%;
+}
+
+.biblia-consulta-erro {
+  font-size: 0.75rem;
+  color: #b91c1c;
+  margin: 0.35rem 0 0;
+  word-break: break-word;
+}
+
+/* Áudio */
+.biblia-audio-wrap {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.biblia-btn-audio {
+  width: 100%;
+  background: var(--bg-elevated);
+  color: var(--ink);
+  border-color: var(--border);
+}
+
+.biblia-btn-audio:hover:not(:disabled) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  filter: none;
+}
+
+/* ========== Área central da Bíblia (leitura) ========== */
+.biblia-conteudo {
+  min-width: 0;
+  padding: 1.25rem 0;
+  min-height: 180px;
+  box-sizing: border-box;
+}
+
+.biblia-conteudo-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.biblia-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.biblia-titulo {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+  word-break: break-word;
+}
+
+.biblia-traducao {
+  font-weight: 400;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+/* Setas anterior / próximo capítulo */
+.biblia-nav-capitulos {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.biblia-nav-capitulos-bottom {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.biblia-arrow {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-paper);
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--duration-fast) var(--ease), background var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+  box-sizing: border-box;
+}
+
+.biblia-arrow:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.biblia-arrow:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.biblia-dica {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin: -0.35rem 0 0.85rem;
+}
+
+/* Versículos: evita quebra estranha */
+.biblia-versos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.biblia-verso {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+  line-height: 1.75;
+  text-align: justify;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
+  min-width: 0;
+  break-inside: avoid;
+}
+
+.biblia-verso:hover {
+  background: var(--accent-soft);
+}
+
+.biblia-verso-marcado {
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.biblia-verso-destaco {
+  animation: biblia-destaco 0.4s ease;
+}
+
+@keyframes biblia-destaco {
+  0% { background: var(--accent-soft); }
+  100% { background: transparent; }
+}
+
+.biblia-num {
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 1.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.biblia-num:hover {
+  color: var(--accent-hover, var(--accent));
+  text-decoration: underline;
+}
+
+.biblia-verso-marcado .biblia-num {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.biblia-texto {
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.biblia-msg,
+.biblia-erro {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--ink-muted);
+  border-radius: var(--radius);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.biblia-erro {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+/* Painel Estudo e observação */
+.biblia-estudo {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+  padding: 1rem 1.1rem;
+  background: var(--bg-paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-height: calc(100vh - var(--header-height) - 2rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.biblia-estudo-titulo {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.biblia-estudo-textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.55rem 0.65rem;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  resize: vertical;
+  min-height: 3.5rem;
+  box-sizing: border-box;
+}
+
+.biblia-estudo-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.biblia-estudo-versos {
+  margin-top: 0.5rem;
+}
+
+.biblia-estudo-verso-item {
+  margin-bottom: 0.85rem;
+}
+
+.biblia-estudo-verso-ref {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+  word-break: break-word;
+}
+
+.biblia-estudo-textarea-verso {
+  min-height: 2.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.biblia-estudo-vazio {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+/* ========== Responsivo: sem quebrar a página ========== */
+@media (max-width: 1100px) {
+  .biblia-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "nav nav"
+      "conteudo estudo";
+  }
+
+  .biblia-nav {
+    grid-area: nav;
+    position: static;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .biblia-nav .biblia-ref,
+  .biblia-consulta,
+  .biblia-audio-wrap {
+    grid-column: 1 / -1;
+  }
+
+  .biblia-conteudo {
+    grid-area: conteudo;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .biblia-conteudo-inner {
+    max-width: none;
+    padding: 1.25rem 1rem;
+  }
+
+  .biblia-estudo {
+    grid-area: estudo;
+    position: static;
+    max-height: none;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .biblia-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "nav"
+      "conteudo"
+      "estudo";
+  }
+
+  .biblia-conteudo-inner {
+    padding: 1rem 0.85rem;
+  }
+
+  .biblia-cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .biblia-nav-capitulos {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .biblia-arrow {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .biblia-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .biblia-verso {
+    flex-wrap: wrap;
+  }
+
+  .biblia-num {
+    margin-bottom: 0.15rem;
+  }
+}
