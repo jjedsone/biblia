@@ -120,8 +120,14 @@ body {
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+}
+
+body.overflow-hidden {
+  overflow: hidden;
+  touch-action: none;
 }
 
 /* Links globais */
